@@ -1,0 +1,26 @@
+%h1 Tasks
+
+%table
+  %thead
+    %tr
+      %th Title
+      %th Description
+      %th Work Focus
+      %th Due Date
+      %th Status
+      %th Actions
+  %tbody
+    - @tasks.each do |task|
+      %tr
+        %td= task.title
+        %td= task.description
+        %td= task.work_focus
+        %td= task.due_date
+        %td= task.status
+        %td
+          = link_to 'Edit', edit_project_task_path(@project, task)
+          = button_to project_task_path(@project, task), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger', form: { data: { remote: true, method: :delete, confirm: 'Are you sure?' } } do
+            Delete
+
+
+= link_to 'New Task', new_project_task_path

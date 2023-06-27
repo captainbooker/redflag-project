@@ -1,6 +1,19 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  resources :tasks
+  root to: 'projects#index'
+  devise_for :users, controllers: { registrations: 'registrations' }
+  
+  namespace :api do
+    namespace :v1 do
+      devise_for :users, controllers: {
+        sessions: 'api/v1/sessions',
+        registrations: 'api/v1/registrations'
+      }
+    end
+  end
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  resources :projects do
+    resources :tasks, only: [:index, :new, :create, :edit, :update, :destroy]
+  end
+
 end

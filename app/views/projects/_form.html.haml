@@ -1,0 +1,17 @@
+= form_for @project do |f|
+  %p
+    = f.label :title
+    = f.text_field :title
+
+  %p
+    = f.label :description
+    = f.text_area :description
+
+  %p
+    = f.label :due_date
+    = f.date_field :due_date
+  
+  = f.hidden_field :project_manager_id, value: current_user.id
+
+  %p
+    = f.submit

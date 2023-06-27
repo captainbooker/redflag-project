@@ -1,0 +1,16 @@
+%h1= @project.title
+
+%h3 Description:
+%p= @project.description
+
+%h3 Due Date:
+%p= @project.due_date
+
+%h3 Tasks:
+%ul
+  - @project.tasks.each do |task|
+    %li= task.title
+
+%br
+= link_to 'Edit', edit_project_path(@project)
+= link_to 'Back', projects_path
