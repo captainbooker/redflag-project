@@ -47,6 +47,7 @@ gem 'pundit'
 gem 'sidekiq'
 gem "sidekiq-cron"
 gem 'haml-rails'
+gem 'bootstrap', '~> 5.1.1'
 
 # Use Sass to process CSS
 # gem "sassc-rails"
