@@ -1,0 +1,35 @@
+%h1 Editing task
+
+= form_with(model: @task, url: project_task_path(project_id: @project.id), local: true) do |form|
+  .form-group
+    = form.label :title
+    = form.text_field :title, class: 'form-control'
+
+  .form-group
+    = form.label :description
+    = form.text_area :description, class: 'form-control'
+
+  .form-group
+    = form.label :work_focus
+    = form.text_field :work_focus, class: 'form-control'
+
+  .form-group
+    = form.label :due_date
+    = form.date_field :due_date, class: 'form-control'
+
+  .form-group
+    = form.label :status
+    = form.select :status, Task.statuses.keys, {}, class: 'form-control'
+  
+  = form.hidden_field :project_manager_id, value: current_user.id
+  
+  .form-group
+    = form.label :assignee
+    = form.select :assignee_id, User.where(role: 'employee').pluck(:email, :id), {}, class: 'form-control'
+  
+  = form.submit 'Submit', class: 'btn btn-primary'
+
+
+= link_to 'Show', @task
+\|
+= link_to 'Back', project_tasks_path

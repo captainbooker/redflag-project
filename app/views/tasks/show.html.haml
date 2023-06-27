@@ -1,0 +1,9 @@
+%h1= @task.title
+
+%p= @task.description
+%p= @task.work_focus
+%p= @task.due_date
+%p= @task.status
+
+= link_to 'Edit', edit_task_path(@task)
+= link_to 'Back', tasks_path
